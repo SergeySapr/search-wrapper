@@ -1,0 +1,32 @@
+{
+  "name": "searchwrapper",
+  "version": "1.0.0",
+  "description": "Google search wrapper",
+  "main": "server.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergeySapr/search-wrapper.git"
+  },
+  "keywords": [
+    "URL",
+    "API"
+  ],
+  "author": "Sergey Saprykin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergeySapr/search-wrapper/issues"
+  },
+  "homepage": "https://github.com/SergeySapr/search-wrapper#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.9",
+    "request": "^2.74.0"
+  },
+  "engines": {
+    "node": "4.1.2"
+  }
+}
