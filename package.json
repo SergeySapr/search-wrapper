@@ -24,7 +24,8 @@
   "dependencies": {
     "express": "^4.14.0",
     "mongodb": "^2.2.9",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "url": "^0.11.0"
   },
   "engines": {
     "node": "4.1.2"
