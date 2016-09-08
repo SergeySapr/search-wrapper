@@ -11,7 +11,7 @@ console.log(mongoURL);
 var app = express();
 
 app.get('/',function(req,res){
-  res.send("Pass a string to /API to search for images, or pass /API/recent to see recent searches. To limit the number of responses, add '&num=5' to the end of your query (valid numbers range from 1 to 10).")  
+  res.send("Pass a string to /API to search for images, or pass /API/recent to see recent searches. To limit the number of responses, add '?offset={NUMBER}' to the end of your query (defaults to 10 in both cases, valid numbers for new searches are from 1 to 10, for browsing recent queries  - from 1 to 100; any numbers larger than that will be forciby converted to 10 and 100 respectively).")  
 });
 app.get("/API/recent",function (req,res) {
   getRecentQueries(req,res)
@@ -29,6 +29,7 @@ app.get('/API/new/:QUERY?:PARAMS',function (req,res){
 function getRecentQueries(req,res) {
   var queryObject = url.parse(req.url,true).query;
   var num = +queryObject.offset||20;
+  if (num >100) num = 100;
   MongoClient.connect(mongoURL, function (err, db) {
           if (err) {
             console.log('Unable to connect to the mongoDB server. Error:', err);
@@ -47,7 +48,8 @@ function getRecentQueries(req,res) {
 
 function processUserQuery(req,res){
       var queryObject = url.parse(req.url,true).query;
-      var num = +queryObject.offset;
+      var num = +queryObject.offset||10;
+      if (num >10) num = 10;
       var query = req.params.QUERY;
       var googleString = "https://www.googleapis.com/customsearch/v1?cx=009689499259443468607%3Ariqzu-m5uq4&searchType=image&key=AIzaSyDgxg-UlpyPHNMFEeWRJ9zfecrjEUUIS9w&" +  "q=" + query + ((num)?('&num=' + num):'')
       console.log(googleString);
