@@ -11,7 +11,7 @@ console.log(mongoURL);
 var app = express();
 
 app.get('/',function(req,res){
-  res.send("Pass a string to /API to search for images, or pass /API/recent to see recent searches. To limit the number of responses, add '?offset={NUMBER}' to the end of your query (defaults to 10 in both cases, valid numbers for new searches are from 1 to 10, for browsing recent queries  - from 1 to 100; any numbers larger than that will be forciby converted to 10 and 100 respectively).")  
+  res.send("Pass a string to /API/new to search for images, or pass /API/recent to see recent searches. To limit the number of responses, add '?offset={NUMBER}' to the end of your query (defaults to 10 in both cases, valid numbers for new searches are from 1 to 10, for browsing recent queries  - from 1 to 100; any numbers larger than that will be forciby converted to 10 and 100 respectively).")  
 });
 app.get("/API/recent",function (req,res) {
   getRecentQueries(req,res)
